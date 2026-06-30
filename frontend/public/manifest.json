@@ -1,0 +1,24 @@
+{
+  "name": "Nexus AI",
+  "short_name": "Nexus",
+  "description": "Smart Digital Life Operating System — Your personal command center for productivity, finance, health, and career.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#070A13",
+  "theme_color": "#6366F1",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "categories": ["productivity", "lifestyle", "utilities"],
+  "screenshots": [],
+  "share_target": {
+    "action": "/notes",
+    "method": "GET",
+    "params": { "text": "content" }
+  }
+}
