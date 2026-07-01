@@ -315,6 +315,9 @@ router.get('/profile', protect, async (req, res) => {
           gender: mockUser.gender || '',
           city: mockUser.city || '',
           state: mockUser.state || '',
+          country: mockUser.country || '',
+          bio: mockUser.bio || '',
+          university: mockUser.university || '',
           linkedinUrl: mockUser.linkedinUrl || '',
           githubUrl: mockUser.githubUrl || '',
           collegeName: mockUser.collegeName || '',
@@ -344,6 +347,9 @@ router.get('/profile', protect, async (req, res) => {
           gender: user.gender,
           city: user.city,
           state: user.state,
+          country: user.country || '',
+          bio: user.bio || '',
+          university: user.university || '',
           linkedinUrl: user.linkedinUrl,
           githubUrl: user.githubUrl,
           collegeName: user.collegeName,
@@ -373,6 +379,7 @@ router.put('/profile', protect, async (req, res) => {
       if (idx !== -1) {
         const u = mockDb.users[idx];
         u.name = req.body.name || u.name;
+        if (req.body.email !== undefined) u.email = req.body.email;
         if (req.body.password) {
           const salt = await bcrypt.genSalt(10);
           u.passwordHash = await bcrypt.hash(req.body.password, salt);
@@ -385,6 +392,9 @@ router.put('/profile', protect, async (req, res) => {
         if (req.body.linkedinUrl !== undefined) u.linkedinUrl = req.body.linkedinUrl;
         if (req.body.githubUrl !== undefined) u.githubUrl = req.body.githubUrl;
         if (req.body.collegeName !== undefined) u.collegeName = req.body.collegeName;
+        if (req.body.university !== undefined) u.university = req.body.university;
+        if (req.body.country !== undefined) u.country = req.body.country;
+        if (req.body.bio !== undefined) u.bio = req.body.bio;
         if (req.body.academicDetails) {
           u.academicDetails = {
             course: req.body.academicDetails.course !== undefined ? req.body.academicDetails.course : u.academicDetails.course,
@@ -418,6 +428,7 @@ router.put('/profile', protect, async (req, res) => {
             id: u._id, name: u.name, email: u.email, role: u.role,
             avatar: u.avatar, profilePhoto: u.profilePhoto, authProvider: u.authProvider,
             mobile: u.mobile, dob: u.dob, gender: u.gender, city: u.city, state: u.state,
+            country: u.country || '', bio: u.bio || '', university: u.university || '',
             linkedinUrl: u.linkedinUrl, githubUrl: u.githubUrl, collegeName: u.collegeName,
             academicDetails: u.academicDetails, skills: u.skills,
             placementGoals: u.placementGoals, resumePath: u.resumePath, resumeName: u.resumeName
@@ -430,6 +441,7 @@ router.put('/profile', protect, async (req, res) => {
     const user = await User.findById(req.user.id);
     if (user) {
       user.name = req.body.name || user.name;
+      if (req.body.email !== undefined) user.email = req.body.email;
       if (req.body.password) {
         user.password = req.body.password;
       }
@@ -441,6 +453,9 @@ router.put('/profile', protect, async (req, res) => {
       if (req.body.linkedinUrl !== undefined) user.linkedinUrl = req.body.linkedinUrl;
       if (req.body.githubUrl !== undefined) user.githubUrl = req.body.githubUrl;
       if (req.body.collegeName !== undefined) user.collegeName = req.body.collegeName;
+      if (req.body.university !== undefined) user.university = req.body.university;
+      if (req.body.country !== undefined) user.country = req.body.country;
+      if (req.body.bio !== undefined) user.bio = req.body.bio;
       if (req.body.academicDetails) {
         user.academicDetails = {
           course: req.body.academicDetails.course !== undefined ? req.body.academicDetails.course : user.academicDetails.course,
@@ -471,6 +486,7 @@ router.put('/profile', protect, async (req, res) => {
           id: updatedUser._id, name: updatedUser.name, email: updatedUser.email, role: updatedUser.role,
           avatar: updatedUser.avatar, profilePhoto: updatedUser.profilePhoto, authProvider: updatedUser.authProvider,
           mobile: updatedUser.mobile, dob: updatedUser.dob, gender: updatedUser.gender, city: updatedUser.city, state: updatedUser.state,
+          country: updatedUser.country || '', bio: updatedUser.bio || '', university: updatedUser.university || '',
           linkedinUrl: updatedUser.linkedinUrl, githubUrl: updatedUser.githubUrl, collegeName: updatedUser.collegeName,
           academicDetails: updatedUser.academicDetails, skills: updatedUser.skills,
           placementGoals: updatedUser.placementGoals, resumePath: updatedUser.resumePath, resumeName: updatedUser.resumeName

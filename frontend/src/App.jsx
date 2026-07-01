@@ -11,32 +11,12 @@ import PrivateRoute from "./components/PrivateRoute";
 // Lazy-loaded pages for code splitting
 const Dashboard = lazy(() => import("./pages/Dashboard"));
 const Profile = lazy(() => import("./Profile"));
-const Analytics = lazy(() => import("./pages/Analytics"));
 
-// Life & Productivity
-const Planner = lazy(() => import("./pages/Planner"));
-const CalendarPage = lazy(() => import("./pages/CalendarPage"));
-const Tasks = lazy(() => import("./pages/Tasks"));
-const Notes = lazy(() => import("./pages/Notes"));
-const Goals = lazy(() => import("./pages/Goals"));
-const Habits = lazy(() => import("./pages/Habits"));
-
-// Finance
-const Expenses = lazy(() => import("./pages/Expenses"));
-const Budget = lazy(() => import("./pages/Budget"));
-const Savings = lazy(() => import("./pages/Savings"));
-const Bills = lazy(() => import("./pages/Bills"));
-
-// Health & Vault
-const MedicineReminder = lazy(() => import("./pages/MedicineReminder"));
-const VehicleReminder = lazy(() => import("./pages/VehicleReminder"));
-const DocumentVault = lazy(() => import("./pages/DocumentVault"));
-const EmergencyContacts = lazy(() => import("./pages/EmergencyContacts"));
-
-// Career & Education
-const StudentPlanner = lazy(() => import("./pages/StudentPlanner"));
-const CareerPlanner = lazy(() => import("./pages/CareerPlanner"));
-const FamilyWorkspace = lazy(() => import("./pages/FamilyWorkspace"));
+// PrepNex Hub
+const PrepNexHub = lazy(() => import("./pages/PrepNexHub"));
+const CourseDetail = lazy(() => import("./pages/CourseDetail"));
+const SubjectDetail = lazy(() => import("./pages/SubjectDetail"));
+const StudentProfile = lazy(() => import("./pages/StudentProfile"));
 
 // Legacy PrepNex tools
 const CodingArena = lazy(() => import("./pages/CodingArena"));
@@ -53,7 +33,7 @@ const PageLoader = () => (
   <div className="min-h-screen bg-[#070A13] flex items-center justify-center">
     <div className="flex flex-col items-center gap-3">
       <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 animate-pulse" />
-      <p className="text-xs text-slate-500">Loading Nexus AI...</p>
+      <p className="text-xs text-slate-500">Loading PrepNex...</p>
     </div>
   </div>
 );
@@ -73,32 +53,12 @@ const AnimatedRoutes = () => {
           <Route element={<PrivateRoute />}>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/analytics" element={<Analytics />} />
 
-            {/* Life & Productivity */}
-            <Route path="/planner" element={<Planner />} />
-            <Route path="/calendar" element={<CalendarPage />} />
-            <Route path="/tasks" element={<Tasks />} />
-            <Route path="/notes" element={<Notes />} />
-            <Route path="/goals" element={<Goals />} />
-            <Route path="/habits" element={<Habits />} />
-
-            {/* Finance */}
-            <Route path="/expenses" element={<Expenses />} />
-            <Route path="/budget" element={<Budget />} />
-            <Route path="/savings" element={<Savings />} />
-            <Route path="/bills" element={<Bills />} />
-
-            {/* Health & Vault */}
-            <Route path="/medicine" element={<MedicineReminder />} />
-            <Route path="/vehicle" element={<VehicleReminder />} />
-            <Route path="/documents" element={<DocumentVault />} />
-            <Route path="/emergency" element={<EmergencyContacts />} />
-
-            {/* Career & Education */}
-            <Route path="/student" element={<StudentPlanner />} />
-            <Route path="/career" element={<CareerPlanner />} />
-            <Route path="/family" element={<FamilyWorkspace />} />
+            {/* PrepNex Hub */}
+            <Route path="/hub" element={<PrepNexHub />} />
+            <Route path="/hub/course/:courseId" element={<CourseDetail />} />
+            <Route path="/hub/course/:courseId/semester/:semester/subject/:subject" element={<SubjectDetail />} />
+            <Route path="/profile/student" element={<StudentProfile />} />
 
             {/* Legacy PrepNex Tools */}
             <Route path="/coding" element={<CodingArena />} />

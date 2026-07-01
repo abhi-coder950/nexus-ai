@@ -3,56 +3,24 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  LayoutDashboard, CheckSquare, StickyNote, Target, Flame, Wallet,
-  PiggyBank, TrendingUp, Receipt, Pill, Car, FolderLock, Phone,
-  GraduationCap, Briefcase, BarChart3, Users, CalendarDays,
-  FileText, Code, BookOpen, MessageSquare, LogOut, ShieldCheck,
-  ChevronDown, Zap, Menu, X
+  LayoutDashboard, Code, BookOpen, MessageSquare, FileText,
+  LogOut, ShieldCheck, ChevronDown, GraduationCap, Menu, X,
+  Search, User, Globe, Home
 } from 'lucide-react';
 
 const NAV_SECTIONS = [
   {
     label: 'Overview',
     items: [
+      { name: 'Home', path: '/', icon: Home, color: 'emerald' },
       { name: 'Dashboard', path: '/dashboard', icon: LayoutDashboard, color: 'indigo' },
-      { name: 'Analytics', path: '/analytics', icon: BarChart3, color: 'violet' },
     ]
   },
   {
-    label: 'Life & Productivity',
+    label: 'PrepNex Hub',
     items: [
-      { name: 'Planner', path: '/planner', icon: CalendarDays, color: 'sky' },
-      { name: 'Calendar', path: '/calendar', icon: CalendarDays, color: 'blue' },
-      { name: 'Tasks', path: '/tasks', icon: CheckSquare, color: 'emerald' },
-      { name: 'Notes', path: '/notes', icon: StickyNote, color: 'amber' },
-      { name: 'Goals', path: '/goals', icon: Target, color: 'orange' },
-      { name: 'Habits', path: '/habits', icon: Flame, color: 'rose' },
-    ]
-  },
-  {
-    label: 'Finance',
-    items: [
-      { name: 'Expenses', path: '/expenses', icon: Wallet, color: 'cyan' },
-      { name: 'Budget', path: '/budget', icon: Receipt, color: 'teal' },
-      { name: 'Savings', path: '/savings', icon: PiggyBank, color: 'green' },
-      { name: 'Bills', path: '/bills', icon: TrendingUp, color: 'lime' },
-    ]
-  },
-  {
-    label: 'Health & Vault',
-    items: [
-      { name: 'Medicine', path: '/medicine', icon: Pill, color: 'pink' },
-      { name: 'Vehicle', path: '/vehicle', icon: Car, color: 'purple' },
-      { name: 'Documents', path: '/documents', icon: FolderLock, color: 'indigo' },
-      { name: 'Emergency', path: '/emergency', icon: Phone, color: 'red' },
-    ]
-  },
-  {
-    label: 'Career & Education',
-    items: [
-      { name: 'Student Planner', path: '/student', icon: GraduationCap, color: 'violet' },
-      { name: 'Career Planner', path: '/career', icon: Briefcase, color: 'indigo' },
-      { name: 'Family', path: '/family', icon: Users, color: 'pink' },
+      { name: 'Hub', path: '/hub', icon: Globe, color: 'cyan' },
+      { name: 'My Profile', path: '/profile/student', icon: User, color: 'violet' },
     ]
   },
   {
@@ -156,14 +124,14 @@ const Sidebar = () => {
       {/* Brand */}
       <div className={`flex items-center h-16 border-b border-slate-800/80 shrink-0 ${collapsed ? 'justify-center px-3' : 'gap-3 px-5'}`}>
         <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center shrink-0">
-          <Zap className="h-4 w-4 text-white" />
+          <GraduationCap className="h-4 w-4 text-white" />
         </div>
         {!collapsed && (
           <div className="flex-1 min-w-0">
-            <span className="font-bold text-base tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-violet-400">
-              Nexus AI
+            <span className="font-bold text-base tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-cyan-300">
+              PrepNex
             </span>
-            <p className="text-[9px] text-slate-500 font-medium leading-none mt-0.5">Digital Life OS</p>
+            <p className="text-[9px] text-slate-500 font-medium leading-none mt-0.5">Practice. Prepare. Perform.</p>
           </div>
         )}
         <button
@@ -263,11 +231,11 @@ const Sidebar = () => {
                 {/* Brand - mobile */}
                 <div className="flex items-center gap-3 h-16 px-5 border-b border-slate-800/80">
                   <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center">
-                    <Zap className="h-4 w-4 text-white" />
+                    <GraduationCap className="h-4 w-4 text-white" />
                   </div>
                   <div>
-                    <span className="font-bold text-base bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-violet-400">Nexus AI</span>
-                    <p className="text-[9px] text-slate-500">Digital Life OS</p>
+                    <span className="font-bold text-base bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-cyan-300">PrepNex</span>
+                    <p className="text-[9px] text-slate-500">Practice. Prepare. Perform.</p>
                   </div>
                 </div>
                 <nav className="flex-1 px-2 py-4 overflow-y-auto" onClick={() => setMobileOpen(false)}>

@@ -38,6 +38,9 @@ const Landing = () => {
           </span>
         </div>
         <div className="hidden sm:flex items-center gap-6">
+          <Link to="/hub" className="text-slate-400 hover:text-slate-200 text-sm font-medium transition-colors">
+            Hub
+          </Link>
           <a href="#features" className="text-slate-400 hover:text-slate-200 text-sm font-medium transition-colors">
             Features
           </a>

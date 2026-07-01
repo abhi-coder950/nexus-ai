@@ -1,4 +1,4 @@
-const CACHE_NAME = 'nexus-ai-v1';
+const CACHE_NAME = 'prepnex-v1';
 const STATIC_ASSETS = ['/', '/index.html', '/manifest.json'];
 
 self.addEventListener('install', (event) => {

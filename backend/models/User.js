@@ -17,6 +17,9 @@ const userSchema = new mongoose.Schema({
   linkedinUrl: { type: String, default: '' },
   githubUrl: { type: String, default: '' },
   collegeName: { type: String, default: 'Arka Jain University' },
+  university: { type: String, default: '' },
+  country: { type: String, default: '' },
+  bio: { type: String, default: '' },
   academicDetails: {
     course: { type: String, default: '' },
     branch: { type: String, default: '' },

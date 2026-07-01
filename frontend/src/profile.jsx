@@ -181,7 +181,8 @@ const Profile = () => {
   const isEditingRef = useRef(false);
 
   const [form, setForm] = useState({
-    name: '', mobile: '', dob: '', gender: '', city: '', state: '',
+    name: '', email: '', mobile: '', dob: '', gender: '', city: '', state: '', country: '',
+    bio: '', university: '',
     linkedinUrl: '', githubUrl: '', collegeName: 'Arka Jain University',
     academicDetails: { course: '', branch: '', cgpa: '', graduationYear: '', currentSemester: '' },
     skills: [],
@@ -194,11 +195,15 @@ const Profile = () => {
     if (user && !isEditingRef.current) {
       setForm({
         name: user.name || '',
+        email: user.email || '',
         mobile: user.mobile || '',
         dob: user.dob || '',
         gender: user.gender || '',
         city: user.city || '',
         state: user.state || '',
+        country: user.country || '',
+        bio: user.bio || '',
+        university: user.university || '',
         linkedinUrl: user.linkedinUrl || '',
         githubUrl: user.githubUrl || '',
         collegeName: user.collegeName || 'Arka Jain University',
@@ -395,11 +400,15 @@ const Profile = () => {
     try {
       await updateProfile({
         name: form.name,
+        email: form.email,
         mobile: form.mobile,
         dob: form.dob,
         gender: form.gender,
         city: form.city,
         state: form.state,
+        country: form.country,
+        bio: form.bio,
+        university: form.university,
         linkedinUrl: form.linkedinUrl,
         githubUrl: form.githubUrl,
         collegeName: form.collegeName,
@@ -423,11 +432,15 @@ const Profile = () => {
     isEditingRef.current = false;
     setForm({
       name: user.name || '',
+      email: user.email || '',
       mobile: user.mobile || '',
       dob: user.dob || '',
       gender: user.gender || '',
       city: user.city || '',
       state: user.state || '',
+      country: user.country || '',
+      bio: user.bio || '',
+      university: user.university || '',
       linkedinUrl: user.linkedinUrl || '',
       githubUrl: user.githubUrl || '',
       collegeName: user.collegeName || 'Arka Jain University',
@@ -464,7 +477,8 @@ const Profile = () => {
   // Profile completion calculation
   const calcCompletion = () => {
     const fields = [
-      form.name, form.mobile, form.dob, form.gender, form.city, form.state,
+      form.name, form.mobile, form.dob, form.gender, form.city, form.state, form.country,
+      form.bio, form.university,
       form.linkedinUrl, form.githubUrl, form.collegeName,
       form.academicDetails.course, form.academicDetails.branch,
       form.academicDetails.cgpa, form.academicDetails.graduationYear,
@@ -491,8 +505,10 @@ const Profile = () => {
           const addr = data.address || {};
           const city = addr.city || addr.town || addr.village || addr.county || '';
           const state = addr.state || '';
+          const country = addr.country || '';
           handleChange('city', city);
           handleChange('state', state);
+          handleChange('country', country);
         } catch {
           alert('Could not retrieve location details.');
         } finally {
@@ -616,6 +632,8 @@ const Profile = () => {
             <div className="glass-card p-6 rounded-2xl border border-white/5">
               {editMode ? (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  <InputField label="Full Name" icon={User} value={form.name} onChange={(v) => handleChange('name', v)} placeholder="Enter full name" />
+                  <InputField label="Email" icon={Mail} value={form.email} onChange={(v) => handleChange('email', v)} placeholder="Enter email" type="email" />
                   <InputField label="Mobile" icon={Phone} value={form.mobile} onChange={(v) => handleChange('mobile', v)} placeholder="Enter mobile number" />
                   <div>
                     <label className="text-[10px] text-slate-400 uppercase tracking-wider font-bold mb-1.5 block">Date of Birth</label>
@@ -632,6 +650,7 @@ const Profile = () => {
                   <SelectField label="Gender" icon={User} value={form.gender} onChange={(v) => handleChange('gender', v)} options={['Male', 'Female', 'Other', 'Prefer not to say']} />
                   <InputField label="City" icon={MapPin} value={form.city} onChange={(v) => handleChange('city', v)} placeholder="Enter city" />
                   <InputField label="State" icon={MapPin} value={form.state} onChange={(v) => handleChange('state', v)} placeholder="Enter state" />
+                  <InputField label="Country" icon={MapPin} value={form.country} onChange={(v) => handleChange('country', v)} placeholder="Enter country" />
                   {/* Auto-detect location */}
                   <div className="flex items-end">
                     <button
@@ -645,18 +664,23 @@ const Profile = () => {
                     </button>
                   </div>
                   <InputField label="College Name" icon={Building2} value={form.collegeName} onChange={(v) => handleChange('collegeName', v)} placeholder="College name" />
+                  <InputField label="University" icon={GraduationCap} value={form.university} onChange={(v) => handleChange('university', v)} placeholder="University name" />
                   <InputField label="LinkedIn URL" icon={Linkedin} value={form.linkedinUrl} onChange={(v) => handleChange('linkedinUrl', v)} placeholder="https://linkedin.com/in/..." />
                   <InputField label="GitHub URL" icon={Github} value={form.githubUrl} onChange={(v) => handleChange('githubUrl', v)} placeholder="https://github.com/..." />
                 </div>
               ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                   {[
+                    { label: 'Full Name', icon: User, value: form.name || '—' },
+                    { label: 'Email', icon: Mail, value: form.email || '—' },
                     { label: 'Mobile', icon: Phone, value: form.mobile || '—' },
                     { label: 'Date of Birth', icon: Calendar, value: form.dob ? new Date(form.dob + 'T00:00:00').toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' }) : '—' },
                     { label: 'Gender', icon: User, value: form.gender || '—' },
                     { label: 'City', icon: MapPin, value: form.city || '—' },
                     { label: 'State', icon: MapPin, value: form.state || '—' },
-                    { label: 'College', icon: Building2, value: form.collegeName || '—' }
+                    { label: 'Country', icon: MapPin, value: form.country || '—' },
+                    { label: 'College', icon: Building2, value: form.collegeName || '—' },
+                    { label: 'University', icon: GraduationCap, value: form.university || '—' },
                   ].map((item, i) => (
                     <div key={i} className="flex items-center gap-3 bg-slate-950/20 px-4 py-3 rounded-xl border border-white/5">
                       <item.icon className="h-4 w-4 text-indigo-400 shrink-0" />
@@ -681,6 +705,26 @@ const Profile = () => {
                     </div>
                   )}
                 </div>
+              )}
+            </div>
+          </div>
+
+          {/* Bio */}
+          <div className="space-y-4">
+            <h3 className="text-sm font-bold text-white tracking-tight flex items-center gap-2">
+              <FileText className="h-4 w-4 text-indigo-400" /> Bio
+            </h3>
+            <div className="glass-card p-6 rounded-2xl border border-white/5">
+              {editMode ? (
+                <textarea
+                  value={form.bio}
+                  onChange={(e) => handleChange('bio', e.target.value)}
+                  placeholder="Write a short bio about yourself..."
+                  rows={3}
+                  className="w-full bg-slate-950/50 border border-white/10 rounded-xl py-2.5 px-4 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-indigo-500/50 focus:ring-1 focus:ring-indigo-500/30 transition-colors resize-none"
+                />
+              ) : (
+                <p className="text-sm text-slate-300">{form.bio || 'No bio added yet.'}</p>
               )}
             </div>
           </div>

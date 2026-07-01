@@ -1,7 +1,7 @@
 {
-  "name": "Nexus AI",
-  "short_name": "Nexus",
-  "description": "Smart Digital Life Operating System — Your personal command center for productivity, finance, health, and career.",
+  "name": "PrepNex",
+  "short_name": "PrepNex",
+  "description": "Campus Placement Preparation Platform — Practice aptitude, coding, resume review, and interview prep.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#070A13",
@@ -14,10 +14,10 @@
       "type": "image/svg+xml"
     }
   ],
-  "categories": ["productivity", "lifestyle", "utilities"],
+  "categories": ["education", "productivity"],
   "screenshots": [],
   "share_target": {
-    "action": "/notes",
+    "action": "/dashboard",
     "method": "GET",
     "params": { "text": "content" }
   }
